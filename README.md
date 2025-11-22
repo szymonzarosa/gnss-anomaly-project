@@ -26,7 +26,7 @@ Projekt został napisany w języku Python. Do działania wymaga bibliotek wymien
 
 1.  **Sklonuj repozytorium:**
     ```bash
-    git clone <adres-repozytorium-muszę-dodać>
+    git clone <https://github.com/szymonzarosa/gnss-anomaly-project>
     cd gnss_anomaly_project
     ```
 
@@ -84,6 +84,23 @@ Aby wygenerować Krzywą Czułości Detekcji oraz przykładowe wykresy detekcji.
 python src/benchmark_synthetic.py
 ```
 Skrypt wygeneruje wykresy w folderze data/simulated/, pokazując przy jakim tempie deformacji (mm/dzień) algorytm osiąga zadowalającą skuteczność.
+
+### 7. Weryfikacja Wyników: IsolationForest vs Statystyka (MAD)
+W celu oceny wiarygodności detekcji przeprowadzono analizę porównawczą (Cross-Validation) z wykorzystaniem statystyki odpornej – **MAD (Median Absolute Deviation)**.
+
+Dla każdej stacji obliczono wskaźnik *Modified Z-Score*. Dni, w których wartość wskaźnika przekroczyła próg **3.5**, uznano za anomalie statystyczne i zestawiono z wynikami algorytmu Isolation Forest.
+
+### Wnioski z porównania:
+1.  **Różnica podejść:** Metoda statystyczna (MAD) działa w sposób **bezwzględny** (wykrywa tylko przekroczenia amplitudy), podczas gdy Isolation Forest działa w sposób **względny** (szuka najmniej prawdopodobnych wzorców w wielowymiarowej przestrzeni danych).
+2.  **Stacje stabilne:** Dla stacji o wysokiej jakości danych (np. BYDG), algorytm AI wykazuje tendencję do nadczułości (wymusza znalezienie określonego procenta anomalii w szumie), podczas gdy MAD nie wskazuje błędów.
+3.  **Stacje awaryjne:** W przypadku wystąpienia silnych zakłóceń (np. KRA1, REDZ), obie metody wykazują wysoką zgodność detekcji.
+4.  **Rekomendacja:** Wyniki sugerują, że optymalnym rozwiązaniem inżynierskim jest podejście hybrydowe: wykorzystanie Isolation Forest do wykrywania subtelnych anomalii przestrzennych oraz MAD do filtrowania fałszywych alarmów o niskiej amplitudzie.
+
+Aby wygenerować szczegółowy raport porównawczy w formacie Excel:
+```bash
+python src/verify_mad.py
+```
+Wynik: Plik data/results/raport_porownawczy.xlsx zawierający macierz zgodności dla każdej stacji.
 
 ## Wnioski z analizy czułości
 
