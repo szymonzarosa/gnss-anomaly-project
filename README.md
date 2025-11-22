@@ -85,6 +85,12 @@ python src/benchmark_synthetic.py
 ```
 Skrypt wygeneruje wykresy w folderze data/simulated/, pokazując przy jakim tempie deformacji (mm/dzień) algorytm osiąga zadowalającą skuteczność.
 
+### Wnioski z analizy czułości
+
+**Step/Noise**: Wykrywalność bliska 100% dla nagłych zdarzeń.
+
+**Ramp (Dryf)**: Skuteczna detekcja (>65%) dla prędkości przemieszczeń powyżej 1.5 mm/dobę.
+
 ### 7. Weryfikacja Wyników: IsolationForest vs Statystyka (MAD)
 W celu oceny wiarygodności detekcji przeprowadzono analizę porównawczą (Cross-Validation) z wykorzystaniem statystyki odpornej – **MAD (Median Absolute Deviation)**.
 
@@ -101,12 +107,6 @@ Aby wygenerować szczegółowy raport porównawczy w formacie Excel:
 python src/verify_mad.py
 ```
 Wynik: Plik data/results/raport_porownawczy.xlsx zawierający macierz zgodności dla każdej stacji.
-
-## Wnioski z analizy czułości
-
-**Step/Noise**: Wykrywalność bliska 100% dla nagłych zdarzeń.
-
-**Ramp (Dryf)**: Skuteczna detekcja (>65%) dla prędkości przemieszczeń powyżej 1.5 mm/dobę.
 
 ## Struktura projektu
 
