@@ -1,0 +1,28 @@
+# --- PyCharm & IDE settings ---
+.idea/
+.vscode/
+*.iml
+
+# --- Python compiled files ---
+__pycache__/
+*.py[cod]
+
+# --- Virtual Environment ---
+venv/
+env/
+.env
+
+# --- Data ---
+data/*
+
+!data/.gitkeep
+!data/plots/
+!data/simulated/
+!data/gnss_network_map.html
+
+# --- Models ---
+models/*.pkl
+
+# --- System files ---
+.DS_Store
+Thumbs.db
