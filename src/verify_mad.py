@@ -129,7 +129,7 @@ def verify_results():
         summary_df.to_excel(writer, sheet_name="PORÓWNANIE_METOD", index=False)
 
     print(f"\nRaport gotowy: {OUTPUT_EXCEL}")
-    print("   Otwórz arkusz 'PORÓWNANIE_METOD' by zobaczyć zestawienie.")
+    print("Otwórz arkusz 'PORÓWNANIE_METOD' by zobaczyć zestawienie.")
 
 
 if __name__ == "__main__":
